@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GameZone - Home</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Press+Start+2P&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(to bottom, #0a0a0a, #1a1a1a);
+      background-size: cover;
+      color: #ffffff;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid #00ffcc;
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: #00ffcc;
+      text-decoration: none;
+      margin: 0 25px;
+      padding: 10px 15px;
+      font-size: 1rem;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #fff;
+      border-bottom: 2px solid #00ffcc;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px 20px;
+    }
+
+    header h1 {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 2.5rem;
+      color: #ff0066;
+      text-shadow: 0 0 15px #ff0066;
+    }
+
+    header h2 {
+      font-size: 1.1rem;
+      color: #00ffcc;
+      margin-top: 10px;
+      text-shadow: 0 0 10px #00ffcc;
+    }
+
+    .hero {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .hero button {
+      background-color: #00ffcc;
+      color: #000;
+      border: none;
+      padding: 14px 28px;
+      font-size: 1.1rem;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .hero button:hover {
+      background-color: #00bb99;
+      color: #fff;
+      transform: scale(1.05);
+    }
+
+    main {
+      max-width: 1000px;
+      margin: auto;
+      padding: 30px 20px;
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      margin: 30px 0;
+      border-radius: 15px;
+      border: 1px solid #00ffcc33;
+      box-shadow: 0 0 15px #00ffcc22;
+      transition: 0.3s;
+    }
+
+    .section:hover {
+      transform: translateY(-5px);
+    }
+
+    .section h3 {
+      color: #00ffcc;
+      margin-bottom: 10px;
+    }
+
+    .section p {
+      color: #eee;
+    }
+
+    .quick-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .quick-links a {
+      background: #00ffcc;
+      color: #000;
+      padding: 12px 24px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .quick-links a:hover {
+      background: #00bb99;
+      color: #fff;
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      padding: 30px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="info.html">Info</a>
+    <a href="updates.html">Updates</a>
+    <a href="news.html">News</a>
+    <a href="hot-games.html">Hot Games</a>
+    <a href="reviews.html">Reviews</a>
+    <a href="about.html">About</a>
+  </nav>
+
+  <header>
+    <h1>Welcome to GameZone</h1>
+    <h2>Your Portal to the Future of Gaming</h2>
+  </header>
+
+  <div class="hero">
+    <p>Embark on epic journeys, explore stunning new worlds, and connect with the GameZone community.</p>
+    <button onclick="location.href='info.html'">Explore Games</button>
+  </div>
+
+  <main>
+
+    <div class="section">
+      <h3>🔥 What's Hot</h3>
+      <p>Check out the latest released infortmaion about <strong>GTA 6</strong>, <strong>Call of Duty: Black Ops 7</strong>, and <strong>DOOM: The Dark Ages</strong> on our Updates page. Get patch notes, trailers, and more!</p>
+    </div>
+
+    <div class="section">
+      <h3>🌐 Join the Community</h3>
+      <p>Thousands of players are already part of GameZone. Share tips, find teammates, and participate in live events.</p>
+      <div class="quick-links">
+        <a href="community-form.html">Join Now</a>
+        <a href="community.html">View Community</a>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>🕹 What We Offer</h3>
+      <ul style="line-height: 1.8;">
+        <li>Latest gaming updates and news</li>
+        <li>Exclusive developer content and behind-the-scenes</li>
+        <li>Easy access to trailers, patch notes, and feature guides</li>
+        <li>Interactive player community with sign-up</li>
+        <li>Add your thougts and ratings on various games</li>
+      </ul>
+    </div>
+
+  </main>
+
+  <footer>&copy; 2025 GameZone Studios</footer>
+
+</body>
+</html>

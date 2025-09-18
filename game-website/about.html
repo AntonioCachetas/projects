@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GameZone - About</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(to bottom, #0a0a0a, #1a1a1a), url('assets/bg-about.jpg') no-repeat center center fixed;
+      background-blend-mode: overlay;
+      background-size: cover;
+      color: #fff;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background: rgba(5, 5, 5, 0.85);
+      border-bottom: 2px solid #ff00cc;
+      padding: 15px 0;
+    }
+
+    nav a {
+      color: #ff00cc;
+      text-decoration: none;
+      margin: 0 20px;
+      transition: 0.3s;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #fff;
+      border-bottom: 2px solid #ff00cc;
+    }
+
+    header {
+      text-align: center;
+      padding: 50px 20px 10px;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: #ff00cc;
+      text-shadow: 0 0 10px #ff00cc88;
+    }
+
+    header h2 {
+      font-size: 1rem;
+      color: #cccccc;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: auto;
+      padding: 30px 20px;
+    }
+
+    .content-card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 12px;
+      border: 1px solid #ff00cc44;
+      box-shadow: 0 0 10px #ff00cc22;
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      color: #ff00cc;
+    }
+
+    .team-section {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .team-card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      border-radius: 10px;
+      width: 280px;
+      border: 1px solid #ff00cc55;
+      box-shadow: 0 0 10px #ff00cc33;
+    }
+
+    .team-card h3 {
+      color: #ff00cc;
+    }
+
+    .timeline ul {
+      color: #ddd;
+      padding-left: 20px;
+    }
+
+    .timeline li {
+      margin-bottom: 10px;
+    }
+
+    .image-section {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .image-section img {
+      max-width: 100%;
+      border-radius: 12px;
+      border: 1px solid #ff00cc55;
+      box-shadow: 0 0 12px #ff00cc44;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      padding: 30px;
+      color: #aaa;
+    }
+
+    button {
+      background-color: #00ccff;
+      color: #000;
+      border: none;
+      padding: 12px 20px;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      margin-top: 40px;
+    }
+
+    button:hover {
+      background-color: #0088cc;
+      color: #fff;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="info.html">Info</a>
+    <a href="updates.html">Updates</a>
+    <a href="news.html">News</a>
+    <a href="hot-games.html">Hot Games</a>
+    <a href="reviews.html">Reviews</a>
+    <a href="about.html">About</a>
+  </nav>
+
+  <header>
+    <h1>About GameZone</h1>
+    <h2>Meet the Developers & Learn Our Story</h2>
+  </header>
+
+  <main>
+    <div class="content-card">
+      <p>GameZone is developed by a passionate team of indie creators, artists, and dreamers who love sci-fi and futuristic storytelling. We believe in empowering players through immersive worlds, balanced combat systems, and meaningful choices.</p>
+      <p>Our mission is to create games that are fun, inclusive, and replayable. Every line of code, every pixel, and every update is crafted with our players in mind.</p>
+    </div>
+
+    <!-- Developer Cards -->
+    <div class="team-section">
+      <div class="team-card">
+        <h3>Antonio C.</h3>
+        <p>Lead Developer & Designer passionate about building immersive gaming experiences using HTML, CSS, and creative storytelling.</p>
+      </div>
+      <div class="team-card">
+        <h3>Antonio C..</h3>
+        <p>Art Director and Concept Artist bringing the GameZone world to life with stunning visuals and futuristic UI design.</p>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="content-card timeline">
+      <h2>Development Timeline</h2>
+      <ul>
+        <li><strong>Jan 2025:</strong> GameZone project idea is born.</li>
+        <li><strong>Mar 2025:</strong> Early prototypes and concept art completed.</li>
+        <li><strong>Jun 2025:</strong> Community site launched.</li>
+        <li><strong>Jul 2025:</strong> Public beta released with GTA 6, COD: BO7, and Doom previews.</li>
+      </ul>
+    </div>
+
+    <!-- Behind-the-Scenes Image -->
+    <div class="image-section">
+      <h2>Behind the Scenes</h2>
+      <img src="assets/dev-team.jpg" alt="GameZone Development Team">
+    </div>
+  </main>
+
+  <footer>&copy; 2025 GameZone Studios</footer>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Community Members</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(to right, #0a0a0a, #1a1a1a);
+      color: #00ccff;
+      padding: 40px 20px;
+      min-height: 100vh;
+    }
+
+    nav {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    nav a {
+      color: #00ccff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #ffffff;
+      text-shadow: 0 0 8px #00ccff;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #00ccff;
+      margin-bottom: 40px;
+      text-shadow: 0 0 12px #00ccff99;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    li {
+      background: rgba(0, 0, 0, 0.6);
+      margin-bottom: 20px;
+      padding: 20px;
+      border-radius: 12px;
+      border-left: 5px solid #00ccff;
+      box-shadow: 0 0 15px #00ccff22;
+      transition: transform 0.3s ease;
+    }
+
+    li:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 20px #00ccff55;
+    }
+
+    #backBtn {
+      display: block;
+      margin: 40px auto 0;
+      background-color: #00ccff;
+      color: #000;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    #backBtn:hover {
+      background-color: #0099cc;
+      color: #fff;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="community.html">Community List</a>
+    <a href="community-form.html">Join Community</a>
+  </nav>
+
+  <h1>Community Members</h1>
+
+  <ul id="membersList">
+    <!-- Members will be listed here -->
+  </ul>
+
+  <button id="backBtn">← Back</button>
+
+  <script>
+    const membersList = document.getElementById('membersList');
+    const submissions = JSON.parse(localStorage.getItem('submissions') || '[]');
+
+    if (submissions.length === 0) {
+      membersList.innerHTML = '<li>No community members have joined yet.</li>';
+    } else {
+      submissions.forEach(member => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <strong>${member.firstname} ${member.lastname}</strong><br />
+          Email: ${member.email}<br />
+          Phone: ${member.phone}
+        `;
+        membersList.appendChild(li);
+      });
+    }
+
+    document.getElementById('backBtn').onclick = () => {
+      window.history.back();
+    };
+  </script>
+
+</body>
+</html>
