@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>6ixCuts | Barbers</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: #fff;
+      background: #111;
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.9);
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    nav .logo { font-size: 1.5rem; font-weight: 700; letter-spacing: 2px; color: #f8c102; }
+    nav ul { list-style: none; display: flex; gap: 25px; }
+    nav ul li a { text-decoration: none; color: #fff; font-weight: 500; transition: color 0.3s; }
+    nav ul li a:hover { color: #f8c102; }
+
+    header { padding-top: 120px; text-align: center; margin-bottom: 40px; }
+    header h1 { font-size: 3rem; color: #f8c102; margin-bottom: 10px; }
+    header p { color: #ccc; font-size: 1.2rem; }
+
+    .barbers-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      padding: 40px;
+    }
+
+    .barber-card {
+      background: #222;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    }
+
+    .barber-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 15px;
+    }
+
+    .barber-card h2 { color: #f8c102; margin-bottom: 10px; }
+    .services { margin-top: 15px; text-align: left; }
+
+    .service-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #333;
+      padding: 12px 15px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    footer {
+      background: #000;
+      padding: 20px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+      border-top: 1px solid #222;
+    }
+
+    .service-item span { font-size: 1rem; color: #eee; }
+    .service-item a {
+      background: #f8c102;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-decoration: none;
+      color: #111;
+      font-weight: bold;
+      transition: transform 0.2s, background 0.3s;
+    }
+
+    .service-item a:hover { transform: scale(1.05); background: #ffd84d; }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">6ixCuts</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="barbers.html">Barbers</a></li>
+      <li><a href="locations.html">Locations</a></li>
+      <li><a href="help.html">Help</a></li>
+    </ul>
+  </nav>
+
+  <!-- Header -->
+  <header>
+    <h1>Meet Our Barbers</h1>
+    <p>Choose your barber and service to book your appointment.</p>
+  </header>
+
+  <!-- Barber List -->
+  <section class="barbers-container">
+    <!-- Barber 1 -->
+    <div class="barber-card">
+      <img src="assets/barber1.jpg" alt="Barber John">
+      <h2>John “The Fade Master”</h2>
+      <p>Specialist in clean fades and sharp beard trims.</p>
+      <div class="services">
+        <div class="service-item">
+          <span>Haircut - $45</span>
+          <a href="booking.html?barber=John&service=Haircut&price=45">Book</a>
+        </div>
+        <div class="service-item">
+          <span>Haircut & Beard - $60</span>
+          <a href="booking.html?barber=John&service=Haircut+Beard&price=60">Book</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Barber 2 -->
+    <div class="barber-card">
+      <img src="assets/barber2.jpg" alt="Barber Lisa">
+      <h2>Lisa “The Stylist”</h2>
+      <p>Expert in modern cuts, designs, and detailed styling.</p>
+      <div class="services">
+        <div class="service-item">
+          <span>Haircut - $50</span>
+          <a href="booking.html?barber=Lisa&service=Haircut&price=50">Book</a>
+        </div>
+        <div class="service-item">
+          <span>Haircut & Beard - $65</span>
+          <a href="booking.html?barber=Lisa&service=Haircut+Beard&price=65">Book</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Barber 3 -->
+    <div class="barber-card">
+      <img src="assets/barber3.jpg" alt="Barber Mike">
+      <h2>Mike “Blade Hands”</h2>
+      <p>Known for precision and fast, clean cuts.</p>
+      <div class="services">
+        <div class="service-item">
+          <span>Haircut - $40</span>
+          <a href="booking.html?barber=Mike&service=Haircut&price=40">Book</a>
+        </div>
+        <div class="service-item">
+          <span>Haircut & Beard - $55</span>
+          <a href="booking.html?barber=Mike&service=Haircut+Beard&price=55">Book</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer>
+    &copy; 2025 6ixCuts. All rights reserved.
+  </footer>
+</body>
+</html>
