@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Checkout — NexGear</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Orbitron:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0f172a;
+      color: #e0e7ff;
+      min-height: 100vh;
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      user-select: none;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #1e293b;
+      padding: 15px 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 25px #3b82f6bb;
+      user-select: text;
+    }
+    .logo-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-title img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      user-select: none;
+    }
+    header h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 800;
+      font-size: 2.2rem;
+      color: #58a6ff;
+      user-select: text;
+    }
+    nav a {
+      color: #58a6ff;
+      text-decoration: none;
+      font-weight: 700;
+      margin-left: 25px;
+      font-family: 'Orbitron', sans-serif;
+      user-select: text;
+      transition: color 0.3s ease;
+    }
+    nav a:hover, nav a:focus {
+      color: #3b82f6;
+      outline: none;
+    }
+    nav a.cart-link {
+      position: relative;
+    }
+    #cart-count {
+      position: absolute;
+      top: -10px;
+      right: -15px;
+      background: #ef4444;
+      color: white;
+      border-radius: 50%;
+      padding: 3px 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      user-select: none;
+    }
+
+    .checkout-box {
+      background: #1e293b;
+      border-radius: 15px;
+      padding: 30px 25px;
+      box-shadow: 0 0 25px #58a6ff88;
+      user-select: text;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+    .checkout-box h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 2rem;
+      color: #58a6ff;
+      text-align: center;
+      margin-bottom: 10px;
+      user-select: text;
+    }
+    form#checkout-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    form#checkout-form input {
+      padding: 14px 18px;
+      border-radius: 12px;
+      border: none;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      background: #0f172a;
+      color: #e0e7ff;
+      box-shadow: inset 0 0 8px #3b82f6;
+      user-select: text;
+      transition: box-shadow 0.3s ease;
+    }
+    form#checkout-form input::placeholder {
+      color: #94a3b8;
+    }
+    form#checkout-form input:focus {
+      outline: none;
+      box-shadow: 0 0 15px #3b82f6;
+      background: #16213e;
+    }
+    .checkout-btn {
+      background: #3b82f6;
+      color: white;
+      padding: 18px 0;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      border-radius: 15px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 6px 20px #3b82f6aa;
+      user-select: none;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+    .checkout-btn:hover, .checkout-btn:focus {
+      background: #2563eb;
+      box-shadow: 0 10px 30px #2563ebbb;
+      outline: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      body {
+        padding: 30px 15px 50px;
+      }
+      header {
+        padding: 12px 15px;
+      }
+      nav a {
+        margin-left: 15px;
+        font-size: 0.9rem;
+      }
+      .checkout-box {
+        padding: 25px 15px;
+      }
+      form#checkout-form input {
+        font-size: 0.95rem;
+      }
+      .checkout-btn {
+        font-size: 1.1rem;
+        padding: 15px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header style="text-align: center;">
+  <h1>NexGear</h1>
+</header>
+
+
+<div class="checkout-box" role="region" aria-labelledby="checkout-title">
+  <h2 id="checkout-title">Checkout</h2>
+
+  <form id="checkout-form" aria-describedby="form-desc" novalidate>
+    <input id="name" name="name" type="text" placeholder="Full Name" required autocomplete="name" aria-required="true" />
+    <input id="address" name="address" type="text" placeholder="Address" required autocomplete="street-address" aria-required="true" />
+    <input id="email" name="email" type="email" placeholder="Email" required autocomplete="email" aria-required="true" />
+    <button type="submit" class="checkout-btn" aria-label="Place your order">Place Order</button>
+  </form>
+</div>
+
+<script>
+  // Get cart from localStorage
+  function getCart() {
+    return JSON.parse(localStorage.getItem('cart') || '[]');
+  }
+
+  // Update cart count in header nav
+  function updateCartCount() {
+    const cart = getCart();
+    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+    document.getElementById('cart-count').textContent = count;
+  }
+
+  // Handle form submit
+  document.getElementById('checkout-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const cart = getCart();
+    if (cart.length === 0) {
+      alert("Your cart is empty. Please add items before checking out.");
+         window.location.href = 'index.html';
+      return;
+    }
+
+    const name = this.name.value.trim();
+    const address = this.address.value.trim();
+    const email = this.email.value.trim();
+
+    if (!name || !address || !email) {
+      alert("Please fill out all required fields.");
+      return;
+    }
+
+    // Simple email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    // Simulate order placement (You can replace this with real backend API call)
+    alert(`Thank you for your order, ${name}! Your items will be shipped to:\n${address}`);
+
+    // Clear cart and form
+    localStorage.removeItem('cart');
+    updateCartCount();
+    this.reset();
+
+    // Redirect back to home or any other page
+    window.location.href = 'index.html';
+  });
+
+  // Initialize cart count on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    updateCartCount();
+  });
+</script>
+
+</body>
+</html>

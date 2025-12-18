@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Cart — NexGear</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Orbitron:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0f172a;
+      color: #e0e7ff;
+      min-height: 100vh;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 30px 20px 50px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      user-select: none;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #1e293b;
+      padding: 15px 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 25px #3b82f6bb;
+      user-select: text;
+    }
+
+     .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 2rem;
+      color: #58a6ff;
+      letter-spacing: 0.1em;
+      user-select: none;
+      cursor: default;
+    }
+    .logo-icon {
+      width: 30px;
+      height: 30px;
+      background: linear-gradient(45deg, #58a6ff, #9fcdff);
+      clip-path: polygon(50% 0%, 90% 25%, 90% 75%, 50% 100%, 10% 75%, 10% 25%);
+      filter: drop-shadow(0 0 5px #58a6ff);
+      animation: pulse 3s ease-in-out infinite;
+    }
+   
+    header h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 800;
+      font-size: 2.2rem;
+      color: #58a6ff;
+      user-select: text;
+    }
+    nav a {
+      color: #58a6ff;
+      text-decoration: none;
+      font-weight: 700;
+      margin-left: 25px;
+      font-family: 'Orbitron', sans-serif;
+      user-select: text;
+      transition: color 0.3s ease;
+    }
+    nav a:hover, nav a:focus {
+      color: #3b82f6;
+      outline: none;
+    }
+    nav a.cart-link {
+      position: relative;
+    }
+    #cart-count {
+      position: absolute;
+      top: -10px;
+      right: -15px;
+      background: #ef4444;
+      color: white;
+      border-radius: 50%;
+      padding: 3px 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      user-select: none;
+    }
+    h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 2rem;
+      color: #58a6ff;
+      text-align: center;
+      user-select: text;
+      margin-bottom: 25px;
+    }
+    #cart-items {
+      background: #1e293b;
+      border-radius: 15px;
+      padding: 25px 30px;
+      box-shadow: 0 0 25px #58a6ff88;
+      color: #d1d5db;
+      min-height: 150px;
+      user-select: text;
+    }
+    .cart-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      border-bottom: 1px solid #3b82f6;
+      padding: 15px 0;
+      user-select: text;
+    }
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+    .cart-item img {
+      width: 80px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px #58a6ff44;
+      user-select: none;
+    }
+    .item-info {
+      flex-grow: 1;
+    }
+    .item-info h3 {
+      font-family: 'Orbitron', sans-serif;
+      color: #58a6ff;
+      font-weight: 700;
+      font-size: 1.2rem;
+      user-select: text;
+    }
+    .item-info p {
+      font-size: 1rem;
+      color: #a5b4fc;
+      margin-top: 4px;
+      user-select: text;
+    }
+    .item-qty {
+      font-weight: 600;
+      color: #d1d5db;
+      min-width: 50px;
+      text-align: center;
+      user-select: text;
+    }
+    .item-price {
+      font-weight: 700;
+      color: #3b82f6;
+      min-width: 90px;
+      text-align: right;
+      font-size: 1.1rem;
+      user-select: text;
+    }
+    .remove-btn {
+      background: #ef4444;
+      border: none;
+      color: white;
+      font-weight: 700;
+      padding: 8px 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s ease;
+      margin-left: 15px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.9rem;
+    }
+    .remove-btn:hover, .remove-btn:focus {
+      background: #b91c1c;
+      outline: none;
+    }
+    .empty-msg {
+      text-align: center;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: #94a3b8;
+      padding: 40px 20px;
+      user-select: text;
+    }
+    .checkout-btn {
+      display: block;
+      width: 100%;
+      max-width: 320px;
+      margin: 30px auto 0;
+      background: #3b82f6;
+      color: white;
+      text-align: center;
+      padding: 18px 0;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      border-radius: 15px;
+      text-decoration: none;
+      box-shadow: 0 6px 20px #3b82f6aa;
+      user-select: none;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+    .checkout-btn:hover, .checkout-btn:focus {
+      background: #2563eb;
+      box-shadow: 0 10px 30px #2563ebbb;
+      outline: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .item-price {
+        text-align: left;
+        margin-top: 8px;
+      }
+      .item-qty {
+        min-width: auto;
+      }
+      .remove-btn {
+        margin-left: 0;
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon"></div>
+    NexGear
+  </div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="cart.html" class="cart-link">Cart (<span id="cart-count">0</span>)</a>
+  </nav>
+</header>
+
+<h2>Your Cart</h2>
+
+<div id="cart-items" aria-live="polite" aria-label="Shopping cart items">
+  <!-- Cart items will render here -->
+</div>
+
+<a href="checkout.html" class="checkout-btn" aria-label="Proceed to checkout">Proceed to Checkout</a>
+
+<script>
+  // Product list, minimal for demo. Should match your actual product data
+  const products = [
+    { id: 1, name: "Wireless Headphones", price: 69.99, image: "images/wireless-headphones.jpg" },
+    { id: 2, name: "Smart Watch", price: 89.99, image: "images/watch.jpg" },
+    { id: 3, name: "Gaming Keyboard", price: 109.99, image: "images/keyboard.jpg" },
+    { id: 4, name: "Bluetooth Speaker", price: 189.99, image: "images/speaker.jpg" },
+    { id: 5, name: "Vr Headset", price: 499.99, image: "images/vr.jpg" },
+    { id: 6, name: "Mouse Pad", price: 10.99, image: "images/mousepad.jpg" }
+  ];
+
+  // Get cart from localStorage
+  function getCart() {
+    return JSON.parse(localStorage.getItem('cart') || '[]');
+  }
+
+  // Save cart to localStorage
+  function saveCart(cart) {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }
+
+  // Update cart count in header nav
+  function updateCartCount() {
+    const cart = getCart();
+    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+    document.getElementById('cart-count').textContent = count;
+  }
+
+  // Remove item by id
+  function removeFromCart(id) {
+    let cart = getCart();
+    cart = cart.filter(item => item.id !== id);
+    saveCart(cart);
+    updateCartCount();
+    renderCartItems();
+  }
+
+  // Render cart items or empty message
+  function renderCartItems() {
+    const cartItemsContainer = document.getElementById('cart-items');
+    const cart = getCart();
+
+    if (cart.length === 0) {
+      cartItemsContainer.innerHTML = '<p class="empty-msg">Your cart is empty.</p>';
+      return;
+    }
+
+    let html = '';
+    cart.forEach(({ id, quantity }) => {
+      const product = products.find(p => p.id === id);
+      if (!product) return;
+
+      html += `
+        <div class="cart-item" data-id="${id}">
+          <img src="${product.image}" alt="${product.name}" />
+          <div class="item-info">
+            <h3>${product.name}</h3>
+            <p>Price: $${product.price.toFixed(2)}</p>
+          </div>
+          <div class="item-qty" aria-label="Quantity">${quantity}</div>
+          <div class="item-price">$${(product.price * quantity).toFixed(2)}</div>
+          <button class="remove-btn" aria-label="Remove ${product.name} from cart">Remove</button>
+        </div>
+      `;
+    });
+    cartItemsContainer.innerHTML = html;
+
+    // Attach event listeners for remove buttons
+    document.querySelectorAll('.remove-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const id = Number(button.closest('.cart-item').dataset.id);
+        removeFromCart(id);
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    updateCartCount();
+    renderCartItems();
+  });
+</script>
+
+</body>
+</html>
