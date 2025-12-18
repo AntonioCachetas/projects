@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scores</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">QuizMaster</div>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
+        <li><a href="scores.html">Scores</a></li>
+        <li><a href="about.html">About</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <h2>Leaderboard</h2>
+    <table id="scoreTable">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Score</th>
+            <th>Date</th>
+        </tr>
+    </table>
+</div>
+
+<script>
+const scores = JSON.parse(localStorage.getItem('quizScores')) || [];
+scores.sort((a,b) => b.score - a.score); // Highest first
+
+const table = document.getElementById('scoreTable');
+scores.forEach(s => {
+    const row = table.insertRow();
+    row.insertCell(0).innerText = s.name;
+    row.insertCell(1).innerText = s.email;
+    row.insertCell(2).innerText = s.score;
+    row.insertCell(3).innerText = s.date;
+});
+</script>
+</body>
+</html>

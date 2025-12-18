@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Community Members List</title>
+  <style>
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(to right, #0a0a0a, #1a1a1a);
+      color: #00ccff;
+      padding: 20px;
+      min-height: 100vh;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    li {
+      background: rgba(0, 0, 0, 0.5);
+      margin-bottom: 15px;
+      padding: 15px;
+      border-radius: 10px;
+      border-left: 4px solid #00ccff;
+    }
+    nav {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    nav a {
+      color: #00ccff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+    nav a:hover {
+      text-decoration: underline;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="community.html">Join Community</a>
+  </nav>
+
+  <h1>Community Members</h1>
+
+  <ul id="membersList">
+    <!-- List will be populated here -->
+  </ul>
+
+  <script>
+    const membersList = document.getElementById('membersList');
+
+    // Get submissions from localStorage
+    const submissions = JSON.parse(localStorage.getItem('submissions') || '[]');
+
+    if(submissions.length === 0) {
+      membersList.innerHTML = '<li>No community members have joined yet.</li>';
+    } else {
+      submissions.forEach(member => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <strong>${member.firstname} ${member.lastname}</strong><br />
+          Email: ${member.email}<br />
+          Phone: ${member.phone}
+        `;
+        membersList.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>

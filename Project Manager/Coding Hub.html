@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Antonio's Project Hub</title>
+
+  <style>
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(135deg, #181818, #222, #1a1a1a);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    header {
+      padding: 40px 20px;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+
+    header h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    header p {
+      font-size: 18px;
+      opacity: 0.8;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      padding: 20px;
+    }
+
+    nav a {
+      padding: 12px 22px;
+      border-radius: 30px;
+      background: #2e2e2e;
+      text-decoration: none;
+      color: white;
+      transition: 0.25s;
+      font-weight: 600;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    nav a:hover {
+      background: #575757;
+      transform: translateY(-3px);
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 32px;
+      margin-top: 60px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+      padding: 30px;
+      max-width: 1400px;
+      margin: auto;
+    }
+
+    .project-card {
+      background: #2c2c2c;
+      padding: 25px;
+      border-radius: 16px;
+      text-align: center;
+      transition: 0.25s;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      background: #3a3a3a;
+    }
+
+    .project-card a {
+      text-decoration: none;
+      color: white;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 40px 0;
+      opacity: 0.7;
+      font-size: 14px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Antonio's Coding Hub</h1>
+    <p>Your personal gateway to all projects, experiments, and creations.</p>
+  </header>
+
+  <nav>
+    <a href="#game-projects">Games</a>
+    <a href="#haircut-projects">Haircuts</a>
+    <a href="#house-projects">House Market</a>
+    <a href="#quiz-projects">Quizzes</a>
+    <a href="#store-website">Online Store</a>
+  </nav>
+
+  <!-- game projects -->
+  <h2 class="section-title" id="game-projects">Game Projects</h2>
+  <div class="project-grid">
+    <div class="project-card">
+      <a href="game-website - Copy/index.html" target="_blank">GameZone</a>
+    </div>
+  </div>
+
+  <!-- haircut projects -->
+  <h2 class="section-title" id="haircut-projects">Haircut Projects</h2>
+  <div class="project-grid">
+    <div class="project-card">
+      <a href="Haircut - Copy/index.html" target="_blank">6ixCuts</a>
+    </div>
+  </div>
+
+  <!-- house projects -->
+  <h2 class="section-title" id="house-projects">House Market Projects</h2>
+  <div class="project-grid">
+    <div class="project-card">
+      <a href="house-market - Copy/index.html" target="_blank">HomeHarbor</a>
+    </div>
+  </div>
+
+  <!-- quiz projects -->
+  <h2 class="section-title" id="quiz-projects">Quiz Projects</h2>
+  <div class="project-grid">
+    <div class="project-card">
+      <a href="quiz-website - Copy/index.html" target="_blank">QuizMaster</a>
+    </div>
+  </div>
+
+  
+  <!-- store projects -->
+  <h2 class="section-title" id="store-website">Store Projects</h2>
+  <div class="project-grid">
+    <div class="project-card">
+      <a href="store-website - Copy/index.html" target="_blank">NexGear</a>
+    </div>
+  </div>
+
+  <div class="footer">
+    © 2025 Antonio Cachetas — All Projects Hub
+  </div>
+
+</body>
+</html>

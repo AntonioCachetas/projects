@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>6ixCuts | Home</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #0d0d0d;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      border-bottom: 1px solid #222;
+    }
+
+    nav .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #f8c102;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #f8c102;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      flex-direction: column;
+      padding: 0 20px;
+      background: linear-gradient(to right, #111, #000);
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      color: #f8c102;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+      color: #ddd;
+      max-width: 700px;
+    }
+
+    .hero button {
+      background: #f8c102;
+      border: none;
+      padding: 15px 40px;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.3s;
+      font-weight: 600;
+    }
+
+    .hero button:hover {
+      transform: scale(1.05);
+      background: #ffd84d;
+    }
+
+    /* About Section */
+    section {
+      min-height: 100vh;
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    .about {
+      background: #111;
+    }
+
+    .about h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #f8c102;
+    }
+
+    .about p {
+      max-width: 700px;
+      margin: auto;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #ccc;
+    }
+
+    /* Services Section */
+    .services {
+      background: #0d0d0d;
+    }
+
+    .services h2 {
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+      color: #f8c102;
+    }
+
+    .service-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .card {
+      background: #1a1a1a;
+      padding: 30px;
+      border-radius: 15px;
+      transition: transform 0.3s;
+      border: 1px solid #222;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+    }
+
+    .card h3 {
+      margin-bottom: 15px;
+      color: #f8c102;
+    }
+
+    .card p {
+      color: #bbb;
+      font-size: 1rem;
+    }
+
+    /* Call to Action */
+    .cta {
+      background: linear-gradient(to right, #111, #000);
+      padding: 80px 20px;
+    }
+
+    .cta h2 {
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+      color: #f8c102;
+    }
+
+    .cta button {
+      background: #f8c102;
+      border: none;
+      padding: 15px 40px;
+      border-radius: 30px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.3s;
+      font-weight: 600;
+    }
+
+    .cta button:hover {
+      transform: scale(1.05);
+      background: #ffd84d;
+    }
+
+
+    footer {
+      background: #000;
+      padding: 20px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+      border-top: 1px solid #222;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">6ixCuts</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="barbers.html">Barbers</a></li>
+      <li><a href="locations.html">Locations</a></li>
+      <li><a href="help.html">Help</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <h1>Look Sharp. Feel Confident.</h1>
+    <p>At 6ixCuts, we specialize in precision fades, beard trims, and modern styles that make a lasting impression. Book your appointment today and experience Toronto’s premier barbershop.</p>
+    <button onclick="window.location.href='barbers.html'">Book Appointment</button>
+  </section>
+
+  <section class="about">
+    <h2>About Us</h2>
+    <p>6ixCuts is more than a barbershop — it’s a lifestyle. Our expert barbers combine skill and style to deliver fresh, flawless looks every time. With a modern atmosphere and a commitment to detail, we make sure you walk out looking and feeling your absolute best.</p>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services">
+    <h2>Our Services</h2>
+    <div class="service-cards">
+      <div class="card">
+        <h3>Classic Fade</h3>
+        <p>A timeless fade cut tailored to your look and personality.</p>
+      </div>
+      <div class="card">
+        <h3>Beard Trim</h3>
+        <p>Sharp beard shaping and grooming to keep you looking clean.</p>
+      </div>
+      <div class="card">
+        <h3>Modern Styles</h3>
+        <p>Trendy cuts and custom styles that make you stand out.</p>
+      </div>
+      <div class="card">
+        <h3>Hot Towel Shave</h3>
+        <p>A traditional experience with modern luxury.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2>Find us at our new location: 1032 St Clair Ave, Toronto, Ontario</h2>
+    <button onclick="window.location.href='locations.html'">Location</button>
+  </section>
+
+  <footer>
+    &copy; 2025 6ixCuts. All rights reserved.
+  </footer>
+</body>
+</html>

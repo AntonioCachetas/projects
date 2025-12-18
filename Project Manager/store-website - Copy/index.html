@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NexGear — Next Level Tech</title>
+
+  <!-- Google Fonts: Orbitron for tech vibe + Inter for clean body -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Orbitron:wght@700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0f172a; /* very dark blue */
+      color: #e0e7ff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    button {
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background: #1e293b;
+      box-shadow: 0 0 15px rgba(88, 99, 241, 0.5);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    /* Logo with icon */
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 2rem;
+      color: #58a6ff;
+      letter-spacing: 0.1em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      user-select: none;
+      cursor: default;
+    }
+    .logo-icon {
+      width: 35px;
+      height: 35px;
+      background: linear-gradient(45deg, #58a6ff, #9fcdff);
+      clip-path: polygon(50% 0%, 90% 25%, 90% 75%, 50% 100%, 10% 75%, 10% 25%);
+      filter: drop-shadow(0 0 5px #58a6ff);
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    /* Nav */
+    nav a {
+      margin-left: 30px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      position: relative;
+      padding: 8px 0;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #58a6ff;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      padding: 140px 20px 80px;
+      text-align: center;
+      background:
+        linear-gradient(135deg, #0f172a 60%, transparent 60%),
+        linear-gradient(225deg, #1e293b 60%, transparent 60%);
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+      overflow: visible;
+      user-select: none;
+    }
+    .hero h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      color: #58a6ff;
+      letter-spacing: 0.15em;
+      margin-bottom: 25px;
+      position: relative;
+      display: inline-block;
+      animation: glitch 3s infinite;
+      text-transform: uppercase;
+    }
+    .hero h2::before,
+    .hero h2::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      right: 0;
+      opacity: 0.7;
+      clip-path: var(--clip);
+    }
+    .hero h2::before {
+      animation: glitchTop 3s infinite;
+      color: #8fc1ff;
+      z-index: -1;
+      --clip: rect(2px, 9999px, 45%, 0);
+    }
+    .hero h2::after {
+      animation: glitchBottom 3s infinite;
+      color: #2e55ff;
+      z-index: -2;
+      --clip: rect(50%, 9999px, 100%, 0);
+    }
+
+    .hero p {
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      color: #cbd5e1;
+      max-width: 450px;
+      margin: 0 auto 45px;
+      font-weight: 500;
+      user-select: text;
+    }
+    .hero a button {
+      background: transparent;
+      color: #58a6ff;
+      border: 2.5px solid #58a6ff;
+      font-weight: 700;
+      font-size: 1.25rem;
+      padding: 15px 50px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.35s ease;
+      box-shadow: 0 0 10px #58a6ff44;
+    }
+    .hero a button:hover {
+      background: #58a6ff;
+      color: #0f172a;
+      box-shadow: 0 0 25px #58a6ffaa;
+      transform: scale(1.1);
+    }
+
+    /* Featured products teaser */
+    .featured {
+      background: #111827;
+      padding: 60px 20px 100px;
+      color: #cbd5e1;
+      text-align: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      border-radius: 10px;
+      box-shadow: 0 0 25px #58a6ff44;
+      user-select: none;
+    }
+    .featured h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      color: #58a6ff;
+      margin-bottom: 30px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .product-cards {
+      display: flex;
+      justify-content: center;
+      gap: 35px;
+      flex-wrap: wrap;
+    }
+    .product-card {
+      background: #1e293b;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px #58a6ff33;
+      width: 220px;
+      padding: 20px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 35px #58a6ffaa;
+    }
+    .product-card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      box-shadow: 0 3px 10px #58a6ff55;
+    }
+    .product-card h4 {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      color: #a5b4fc;
+    }
+    .product-card p {
+      font-size: 0.9rem;
+      color: #d1d5db;
+      user-select: text;
+    }
+
+    /* Animations */
+    @keyframes glitch {
+      0% {
+        text-shadow:
+          2px 0 #2e55ff,
+          -2px 0 #8fc1ff;
+      }
+      20% {
+        text-shadow:
+          4px 0 #2e55ff,
+          -4px 0 #8fc1ff;
+      }
+      40% {
+        text-shadow:
+          2px 0 #2e55ff,
+          -2px 0 #8fc1ff;
+      }
+      60% {
+        text-shadow:
+          4px 0 #2e55ff,
+          -4px 0 #8fc1ff;
+      }
+      80% {
+        text-shadow:
+          2px 0 #2e55ff,
+          -2px 0 #8fc1ff;
+      }
+      100% {
+        text-shadow:
+          2px 0 #2e55ff,
+          -2px 0 #8fc1ff;
+      }
+    }
+    @keyframes glitchTop {
+      0% {
+        clip: rect(0, 9999px, 45%, 0);
+        transform: translate(-3px, -2px);
+      }
+      50% {
+        clip: rect(0, 9999px, 55%, 0);
+        transform: translate(3px, 2px);
+      }
+      100% {
+        clip: rect(0, 9999px, 45%, 0);
+        transform: translate(-3px, -2px);
+      }
+    }
+    @keyframes glitchBottom {
+      0% {
+        clip: rect(50%, 9999px, 100%, 0);
+        transform: translate(3px, 2px);
+      }
+      50% {
+        clip: rect(55%, 9999px, 90%, 0);
+        transform: translate(-3px, -2px);
+      }
+      100% {
+        clip: rect(50%, 9999px, 100%, 0);
+        transform: translate(3px, 2px);
+      }
+    }
+    @keyframes pulse {
+      0%, 100% {
+        filter: drop-shadow(0 0 5px #58a6ff);
+      }
+      50% {
+        filter: drop-shadow(0 0 15px #9fcdff);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 720px) {
+      header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px 25px;
+      }
+      nav a {
+        margin-left: 0;
+        margin-right: 25px;
+      }
+      .product-cards {
+        flex-direction: column;
+        align-items: center;
+      }
+      .product-card {
+        width: 85%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon"></div>
+    NexGear
+  </div>
+  <nav>
+    <a href="index.html" aria-current="page">Home</a>
+    <a href="products.html">Products</a>
+    <a href="cart.html" style="position:relative;">
+      Cart
+    </a>
+  </nav>
+</header>
+
+<section class="hero" aria-label="Promotional banner">
+  <h2 data-text="Modern Tech for Everyone">Modern Tech for Everyone</h2>
+  <p>Explore our best deals now.</p>
+  <a href="products.html"><button>Shop Now</button></a>
+</section>
+
+<section class="featured" aria-label="Featured Products">
+  <h3>Featured Products</h3>
+  <div class="product-cards">
+    <div class="product-card" tabindex="0">
+      <img src="images/speaker.jpg" alt="headphones.jpg" />
+      <h4>JBL Speaker</h4>
+      <p>Portable speaker with deep bass and clear sound.</p>
+    </div>
+    <div class="product-card" tabindex="0">
+      <img src="images/wireless-headphones.jpg" alt="Gadget 2" />
+      <h4>Wireless Headphones</h4>
+      <p>Enjoy wireless freedom with crisp sound and comfortable design.</p>
+    </div>
+    <div class="product-card" tabindex="0">
+      <img src="images/vr.jpg" alt="Gadget 3" />
+      <h4>VR Headset</h4>
+      <p>Experience immersive virtual reality with high resolution and comfort.</p>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

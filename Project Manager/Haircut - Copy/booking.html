@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>6ixCuts | Book Appointment</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: #fff;
+      background: #111;
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.9);
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    nav .logo { font-size: 1.5rem; font-weight: 700; letter-spacing: 2px; color: #f8c102; }
+    nav ul { list-style: none; display: flex; gap: 25px; }
+    nav ul li a { text-decoration: none; color: #fff; font-weight: 500; transition: color 0.3s; }
+    nav ul li a:hover { color: #f8c102; }
+
+    header { padding-top: 120px; text-align: center; margin-bottom: 30px; }
+    header h1 { font-size: 3rem; color: #f8c102; margin-bottom: 10px; }
+    header p { color: #ccc; font-size: 1.2rem; }
+
+    .booking-container {
+      max-width: 600px;
+      margin: auto;
+      background: #222;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    }
+
+    .booking-container label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #f8c102;
+    }
+
+    .booking-container input,
+    .booking-container select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 8px;
+      background: #333;
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .booking-container input:focus,
+    .booking-container select:focus { outline: none; border: 2px solid #f8c102; }
+
+    .btn {
+      background: #f8c102;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.3s;
+    }
+
+    .btn:hover { transform: scale(1.05); background: #ffd84d; }
+
+     /* Footer */
+    footer {
+      background: #000;
+      padding: 20px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+      border-top: 1px solid #222;
+    }
+
+    /* Success Message */
+    .success-message {
+      margin-top: 20px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #f8c102;
+      text-align: center;
+    }
+
+    .success-message span { color: #fff; margin-left: 5px; }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">6ixCuts</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="barbers.html">Barbers</a></li>
+      <li><a href="locations.html">Locations</a></li>
+      <li><a href="help.html">Help</a></li>
+    </ul>
+  </nav>
+
+  <!-- Booking Header -->
+  <header>
+    <h1>Book Your Appointment</h1>
+    <p>Select your barber, service, and time below.</p>
+  </header>
+
+  <section class="booking-container">
+    <form id="booking-form">
+      <label for="barber">Choose Barber</label>
+      <select id="barber" required>
+        <option value="">-- Select Barber --</option>
+        <option value="john">John - The Fade Master</option>
+        <option value="lisa">Lisa - The Stylist</option>
+        <option value="mike">Mike - Blade Hands</option>
+      </select>
+
+      <label for="service">Choose Service</label>
+      <select id="service" required>
+        <option value="">-- Select Service --</option>
+        <option value="haircut">Haircut</option>
+        <option value="haircut-beard">Haircut & Beard</option>
+      </select>
+
+      <label for="date">Choose Date</label>
+      <input type="date" id="date" required>
+
+      <label for="time">Choose Time</label>
+      <input type="time" id="time" required>
+
+      <label for="name">Full Name</label>
+      <input type="text" id="name" placeholder="Enter your name" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Enter your email" required>
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" placeholder="Enter your phone number" required>
+
+      <button type="submit" class="btn">Confirm Booking</button>
+    </form>
+
+    <div id="success-container"></div>
+  </section>
+
+  <script>
+    // Grab URL parameters
+    const params = new URLSearchParams(window.location.search);
+    const barberParam = params.get("barber");
+    const serviceParam = params.get("service");
+    const priceParam = params.get("price");
+
+    const barberSelect = document.getElementById("barber");
+    const serviceSelect = document.getElementById("service");
+    const bookingForm = document.getElementById("booking-form");
+    const successContainer = document.getElementById("success-container");
+
+    // Auto-fill barber and service from URL
+    window.onload = function() {
+      if(barberParam) barberSelect.value = barberParam.toLowerCase();
+      if(serviceParam) {
+        let val = serviceParam.replace(" ", "-").toLowerCase();
+        serviceSelect.value = val.includes("beard") ? "haircut-beard" : "haircut";
+      }
+    }
+
+    // Handle booking form submission
+    bookingForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      // Show confirmation message
+      const barberName = barberSelect.options[barberSelect.selectedIndex].text.split(" -")[0];
+      const price = priceParam ? priceParam : (serviceSelect.value === "haircut-beard" ? "60" : "45");
+
+      const msg = document.createElement("div");
+      msg.className = "success-message";
+      msg.innerHTML = `✅ Successfully booked with ${barberName} <span>— $${price}</span>`;
+
+      successContainer.appendChild(msg);
+
+      bookingForm.reset();
+    });
+  </script>
+  <footer>
+    &copy; 2025 6ixCuts. All rights reserved.
+  </footer>
+</body>
+</html>

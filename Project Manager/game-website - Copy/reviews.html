@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GameZone - Reviews</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(to right, #0a0a0a, #1a1a1a);
+      color: #ffcc00;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background: rgba(10, 10, 10, 0.9);
+      padding: 15px 0;
+      border-bottom: 2px solid #ffcc00;
+    }
+
+    nav a {
+      color: #ffcc00;
+      text-decoration: none;
+      margin: 0 20px;
+      font-weight: bold;
+      font-size: 1rem;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffffff;
+      border-bottom: 2px solid #ffcc00;
+    }
+
+    header {
+      text-align: center;
+      padding: 50px 20px 20px;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: #ffcc00;
+    }
+
+    .game-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-left: 4px solid #ffcc00;
+      border-radius: 10px;
+      margin: 30px auto;
+      width: 90%;
+      max-width: 900px;
+      overflow: hidden;
+      transition: 0.3s;
+    }
+
+    .game-image {
+      position: relative;
+    }
+
+    .game-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .average-rating {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #ffcc00;
+      color: #000;
+      padding: 6px 10px;
+      font-weight: bold;
+      border-radius: 6px;
+    }
+
+    .game-details {
+      padding: 20px;
+    }
+
+    .toggle-btn, .add-btn {
+      background-color: #ffcc00;
+      color: #000;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+      margin-right: 10px;
+    }
+
+    .toggle-btn:hover, .add-btn:hover {
+      background-color: #ffaa00;
+      color: #000;
+    }
+
+    .review-section {
+      display: none;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 20px;
+    }
+
+    .review {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      padding: 10px;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    form {
+      margin-top: 10px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      margin-top: 5px;
+      padding: 8px;
+      border-radius: 6px;
+      border: none;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+
+    .form-container {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="info.html">Info</a>
+    <a href="updates.html">Updates</a>
+    <a href="news.html">News</a>
+    <a href="hot-games.html">Hot Games</a>
+    <a href="reviews.html">Reviews</a>
+    <a href="about.html">About</a>
+  </nav>
+
+  <header>
+    <h1>Game Reviews</h1>
+  </header>
+
+  <div id="games-container"></div>
+
+  <script>
+   const games = [
+  { name: 'GTA 6', image: 'assets/game1.jpg', reviews: [] },
+  { name: 'Black Ops 7', image: 'assets/game2.jpg', reviews: [] },
+  { name: 'DOOM: The Dark Ages', image: 'assets/game3.jpg', reviews: [] },
+  { name: 'Elden Ring: Shadow of the Erdtree', image: 'assets/game4.jpg', reviews: [] },
+  { name: 'The Witcher 4', image: 'assets/game5.jpg', reviews: [] },
+  { name: 'Cyberpunk 2077: Phantom Liberty', image: 'assets/cyberpunk2099.jpg', reviews: [] },
+  { name: 'Fortnite', image: 'assets/game7.jpg', reviews: [] },
+  { name: 'Minecraft', image: 'assets/game8.jpg', reviews: [] },
+  { name: 'Valorant', image: 'assets/game9.jpg', reviews: [] },
+  { name: 'League of Legends', image: 'assets/game10.jpg', reviews: [] },//game10
+  { name: 'Apex Legends', image: 'assets/game11.jpg', reviews: [] },
+  { name: 'Call of Duty: Warzone', image: 'assets/game12.jpg', reviews: [] },
+  { name: 'Red Dead Redemption 2', image: 'assets/game13.jpg', reviews: [] },
+  { name: 'God of War: Ragnarok', image: 'assets/game14.jpg', reviews: [] },
+  { name: 'Hogwarts Legacy', image: 'assets/game15.jpg', reviews: [] }, //game15
+  { name: 'Assassin’s Creed Mirage', image: 'assets/game16.jpg', reviews: [] },
+  { name: 'Final Fantasy XVI', image: 'assets/game17.jpg', reviews: [] },
+  { name: 'Spider-Man 2', image: 'assets/game18.jpg', reviews: [] },
+  { name: 'Resident Evil 4 Remake', image: 'assets/game19.jpg', reviews: [] },
+  { name: 'FIFA 25', image: 'assets/game20.jpg', reviews: [] } //game20
+];
+
+
+    const saved = JSON.parse(localStorage.getItem('gameReviews') || '{}');
+    games.forEach(game => {
+      game.reviews = saved[game.name] || [];
+    });
+
+    const container = document.getElementById('games-container');
+
+    function updateLocalStorage() {
+      const data = {};
+      games.forEach(game => data[game.name] = game.reviews);
+      localStorage.setItem('gameReviews', JSON.stringify(data));
+    }
+
+    function render() {
+      container.innerHTML = '';
+      games.forEach(game => {
+        const div = document.createElement('div');
+        div.className = 'game-card';
+
+        const average = game.reviews.length
+          ? (game.reviews.reduce((acc, r) => acc + parseInt(r.rating), 0) / game.reviews.length).toFixed(1)
+          : 'No ratings yet';
+
+        div.innerHTML = `
+          <div class="game-image">
+            <img src="${game.image}" alt="${game.name}">
+            <div class="average-rating">${average}</div>
+          </div>
+          <div class="game-details">
+            <h2>${game.name}</h2>
+            <button class="toggle-btn">View Reviews</button>
+            <button class="add-btn">Add Review</button>
+            <div class="review-section">
+              ${game.reviews.map(r => `<div class="review"><strong>${r.name}</strong> (${r.rating}/5): ${r.text}</div>`).join('')}
+              <div class="form-container">
+                <form onsubmit="return false;">
+                  <input type="text" name="name" placeholder="Your name" required>
+                  <select name="rating">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                  <textarea name="text" placeholder="Your review..." required></textarea>
+                  <button type="submit">Submit Review</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        `;
+
+        const reviewSection = div.querySelector('.review-section');
+        const formContainer = div.querySelector('.form-container');
+        div.querySelector('.toggle-btn').onclick = () => {
+          reviewSection.style.display = reviewSection.style.display === 'block' ? 'none' : 'block';
+        };
+        div.querySelector('.add-btn').onclick = () => {
+          formContainer.style.display = formContainer.style.display === 'block' ? 'none' : 'block';
+        };
+
+       const form = div.querySelector('form');
+form.addEventListener('submit', (e) => {
+  e.preventDefault(); // Prevent full-page reload
+  const name = form.querySelector('[name="name"]').value.trim();
+  const rating = form.querySelector('[name="rating"]').value;
+  const text = form.querySelector('[name="text"]').value.trim();
+
+  if (name && rating && text) {
+    game.reviews.push({ name, rating, text });
+    updateLocalStorage();
+    render();
+  }
+});
+
+
+        container.appendChild(div);
+      });
+    }
+
+    render();
+  </script>
+</body>
+</html>

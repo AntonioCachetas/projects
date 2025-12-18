@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QuizMaster - Home</title>
+    <link rel="stylesheet" href="style.css"> <!-- Shared CSS -->
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="logo">QuizMaster</div>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
+        <li><a href="scores.html">Scores</a></li>
+        <li><a href="about.html">About</a></li>
+    </ul>
+</nav>
+
+<!-- Hero Section -->
+<div class="hero">
+    <h1>Welcome to QuizMaster!</h1>
+    <p>Test your knowledge with our fun and interactive quiz. Complete all 10 questions and see how you rank!</p>
+    <button onclick="goToQuiz()">Start Quiz</button>
+</div>
+
+<!-- Top Leaderboard -->
+<div class="container">
+    <h2>Top Players</h2>
+    <table id="homeLeaderboard">
+        <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Score</th>
+        </tr>
+    </table>
+</div>
+
+<!-- Recent Players -->
+<div class="container">
+    <h2>Recent Players</h2>
+    <ul id="recentPlayers"></ul>
+</div>
+
+<!-- Quiz Stats -->
+<div class="container stats">
+    <h2>Quiz Stats</h2>
+    <div class="stat-cards">
+        <div class="stat">
+            <h3>Total Quizzes</h3>
+            <p id="totalQuizzes">0</p>
+        </div>
+        <div class="stat">
+            <h3>Highest Score</h3>
+            <p id="highestScore">0</p>
+        </div>
+        <div class="stat">
+            <h3>Total Players</h3>
+            <p id="totalPlayers">0</p>
+        </div>
+    </div>
+</div>
+
+<!-- How It Works Section -->
+<div class="container">
+    <h2>How It Works</h2>
+    <div class="steps">
+        <div class="step">
+            <h3>1. Enter Your Info</h3>
+            <p>Provide your name and email to start the quiz.</p>
+        </div>
+        <div class="step">
+            <h3>2. Answer Questions</h3>
+            <p>Complete 10 multiple-choice questions and submit your answers.</p>
+        </div>
+        <div class="step">
+            <h3>3. View Results</h3>
+            <p>See your score, review answers, and compare with top players!</p>
+        </div>
+    </div>
+</div>
+
+<!-- Fun Quote -->
+<div class="container">
+    <h2>Did You Know?</h2>
+    <p id="funQuote"></p>
+</div>
+
+<script>
+    // Redirect to quiz page
+    function goToQuiz() {
+        window.location.href = 'quiz.html';
+    }
+
+    // Load all scores
+    const allScores = JSON.parse(localStorage.getItem('quizScores')) || [];
+
+    // Top 5 leaderboard
+    allScores.sort((a,b)=>b.score - a.score);
+    const top5 = allScores.slice(0,5);
+    const table = document.getElementById('homeLeaderboard');
+    top5.forEach((s,index)=>{
+        const row = table.insertRow();
+        row.insertCell(0).innerText = index+1;
+        row.insertCell(1).innerText = s.name;
+        row.insertCell(2).innerText = s.score;
+    });
+
+    // Recent players (last 3)
+    const recentPlayersList = document.getElementById('recentPlayers');
+    const recentScores = allScores.slice(-3).reverse();
+    recentScores.forEach(p=>{
+        const li = document.createElement('li');
+        li.innerText = `${p.name} scored ${p.score}/10 on ${p.date}`;
+        recentPlayersList.appendChild(li);
+    });
+
+    // Quiz stats
+    document.getElementById('totalQuizzes').innerText = allScores.length;
+    document.getElementById('totalPlayers').innerText = [...new Set(allScores.map(p=>p.name))].length;
+    document.getElementById('highestScore').innerText = allScores.length ? Math.max(...allScores.map(p=>p.score)) : 0;
+
+    // Fun quote
+    const quotes = [
+        "Knowledge is power! 💡",
+        "Every quiz is a step to greatness!",
+        "Learning is fun with QuizMaster!",
+        "Top scores today might be yours tomorrow!"
+    ];
+    document.getElementById('funQuote').innerText = quotes[Math.floor(Math.random()*quotes.length)];
+</script>
+
+</body>
+</html>
